@@ -1,0 +1,15 @@
+.drive-auth{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin: 10px;
+    background-color: #242424e0;
+    padding: 50px;
+}
+
+.drive-auth-buttons{
+    display: flex;
+    gap: 10px;
+}
