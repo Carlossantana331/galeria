@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import UploadForm from './UploadForm';
-import './styles/PhotoGallery.css';
+import UploadForm from '../UploadForm/UploadForm';
+import "./PhotoGallery.css";
 
 function PhotoGallery() {
   const [media, setMedia] = useState([]);

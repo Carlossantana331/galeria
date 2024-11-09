@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { gapi } from "gapi-script";
-import "./styles/DriveAuth.css";
+import "./DriveAuth.css"
 
 const CLIENT_ID =
   "1090649112825-mf2qb2ssf76pspvfhf1gc4skgbedv93o.apps.googleusercontent.com";
