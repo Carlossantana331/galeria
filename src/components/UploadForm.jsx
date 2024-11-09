@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { gapi } from "gapi-script";
-import "./styles/uploadform.css";
+import "./styles/UploadForm.css";
 import { IoClose } from "react-icons/io5";
 
 const FOLDER_ID = "1z_ZdxUzh2llM3ejZeC1wExCfhv6-Vzph";
