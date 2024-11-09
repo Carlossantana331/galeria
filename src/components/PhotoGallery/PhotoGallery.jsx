@@ -22,14 +22,6 @@ function PhotoGallery() {
     }
   };
 
-  const getVideoUrl = (fileId) => {
-    return `https://drive.google.com/file/d/${fileId}/preview`;
-  };
-
-  const getImageUrl = (fileId) => {
-    return `https://drive.google.com/uc?export=view&id=${fileId}`;
-  };
-
   return (
     <div className="media-gallery">
       <UploadForm onUpload={fetchMedia} />
@@ -39,7 +31,7 @@ function PhotoGallery() {
             <div key={item.id} className="media-item">
               {item.mimeType.startsWith('video/') ? (
                 <iframe
-                  src={getVideoUrl(item.id)}
+                  src={`https://drive.google.com/file/d/${item.id}/preview`}
                   width="640"
                   height="480"
                   allow="autoplay; fullscreen"
@@ -50,7 +42,7 @@ function PhotoGallery() {
                 </iframe>
               ) : (
                 <img
-                  src={getImageUrl(item.id)}
+                  src={item.thumbnailLink} // Usa thumbnailLink para imágenes
                   alt={item.name}
                   className="gallery-image"
                 />
@@ -67,5 +59,3 @@ function PhotoGallery() {
 }
 
 export default PhotoGallery;
-
-
