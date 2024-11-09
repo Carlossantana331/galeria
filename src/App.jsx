@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import DriveAuth from './components/DriveAuth';
-import PhotoGallery from './components/PhotoGallery';
+import DriveAuth from './components/DriveAuth/DriveAuth';
+import PhotoGallery from './components/PhotoGallery/PhotoGallery';
 
 function App() {
   const [isAuthenticated, setAuthenticated] = useState(false);
