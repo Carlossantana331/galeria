@@ -41,7 +41,7 @@
     max-width: 70%;
     list-style-type: none;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
     align-items: center;
 }
@@ -94,3 +94,29 @@
     color: white;
 
 }
+
+.progress-bar {
+  width: 100%;
+  background-color: #ddd; /* Color de fondo de la barra */
+  border-radius: 5px;
+}
+
+.progress {
+  height: 20px; /* Altura de la barra de progreso */
+  background-color: green;
+  border-radius: 5px;
+}
+
+
+@media(max-width: 600px) {
+    .upload-form-input-container{
+        width: 300px !important;
+    }
+
+    .upload-form{
+        padding: 10px;
+    }
+    .upload-btn{
+        padding: 30px;
+    }
+  }
