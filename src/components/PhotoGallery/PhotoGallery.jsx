@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import UploadForm from "../UploadForm/UploadForm";
 import "./PhotoGallery.css";
 
-function PhotoGallery() {
+function PhotoGallery({ userName }) {
   const [media, setMedia] = useState([]);
 
   useEffect(() => {
@@ -21,29 +21,21 @@ function PhotoGallery() {
     }
   };
 
-  // Separa las imágenes y los videos
   const images = media.filter((item) => !item.mimeType.startsWith("video/"));
   const videos = media.filter((item) => item.mimeType.startsWith("video/"));
 
   return (
     <div className="media-gallery">
-      <UploadForm onUpload={fetchMedia} />
+      <UploadForm onUpload={fetchMedia} userName={userName} />
       <div className="media-container">
         {media.length > 0 ? (
           <>
-            {/* Renderiza primero las imágenes */}
             {images.map((item) => (
               <div key={item.id} className="media-item">
-                <img
-                  src={item.thumbnailLink}
-                  alt={item.name}
-                  className="gallery-image"
-                />
+                <img src={item.thumbnailLink} alt={item.name} className="gallery-image" />
                 <p>{item.name}</p>
               </div>
             ))}
-            
-            {/* Renderiza después los videos */}
             {videos.map((item) => (
               <div key={item.id} className="media-item">
                 <iframe
@@ -51,9 +43,7 @@ function PhotoGallery() {
                   allow="autoplay; fullscreen"
                   allowFullScreen
                   title={item.name}
-                >
-                  Tu navegador no soporta la etiqueta de video.
-                </iframe>
+                />
                 <p>{item.name}</p>
               </div>
             ))}
