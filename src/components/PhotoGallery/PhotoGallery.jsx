@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import UploadForm from "../UploadForm/UploadForm";
 import "./PhotoGallery.css";
+import MyLoader from "../MyLoader/MyLoader";
 
 function PhotoGallery({ userName }) {
   const [media, setMedia] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchMedia();
@@ -16,40 +18,39 @@ function PhotoGallery({ userName }) {
       );
       const data = await response.json();
       setMedia(Array.isArray(data.files) ? data.files : []);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching media:", error);
+      setLoading(false);
     }
   };
-
-  const images = media.filter((item) => !item.mimeType.startsWith("video/"));
-  const videos = media.filter((item) => item.mimeType.startsWith("video/"));
 
   return (
     <div className="media-gallery">
       <UploadForm onUpload={fetchMedia} userName={userName} />
       <div className="media-container">
-        {media.length > 0 ? (
-          <>
-            {images.map((item) => (
+        {loading ? (
+          // Mostrar 6 cargadores arbitrarios mientras se está cargando
+          [...Array(6)].map((_, index) => (
+            <div key={index} className="media-item">
+              <MyLoader /> {/* Mostrar el cargador */}
+            </div>
+          ))
+        ) : (
+          media.length > 0 ? (
+            media.map((item) => (
               <div key={item.id} className="media-item">
-                <img src={item.thumbnailLink} alt={item.name} className="gallery-image" />
-                <p>{item.name}</p>
-              </div>
-            ))}
-            {videos.map((item) => (
-              <div key={item.id} className="media-item">
-                <iframe
-                  src={`https://drive.google.com/file/d/${item.id}/preview`}
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
-                  title={item.name}
+                <img
+                  src={item.thumbnailLink}
+                  alt={item.name}
+                  className="gallery-image"
                 />
                 <p>{item.name}</p>
               </div>
-            ))}
-          </>
-        ) : (
-          <p>No se encontraron archivos en la galería.</p>
+            ))
+          ) : (
+            <p>No se encontraron archivos en la galería.</p>
+          )
         )}
       </div>
     </div>
